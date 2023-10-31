@@ -1,0 +1,105 @@
+@import "_reset";
+@import "_variables";
+
+.scroll-wrap {
+	background: var(--color-black);
+	overflow: hidden;
+	@include wh;
+	@include position(fixed, false, false);
+	.scroll-container {
+		width: 100%;
+		position: absolute;
+		overflow: hidden;
+		backface-visibility: hidden;
+		transform-style: preserve-3d;
+	}
+	.box {
+		width: 100%;
+		height: 2000px;
+		border: 2px solid white;
+	}
+	.test {
+		position: fixed;
+		width: 200px;
+		height: 200px;
+		top: 50%;
+		background: beige;
+	}
+}
+body {
+	width: 100%;
+	height: 100vh;
+	border: 2px solid blue;
+}
+.cursor {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+line {
+	stroke: red;
+	stroke-width: 2;
+}
+.scroll-wrap {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+.scroll-container {
+	width: 100%;
+	position: absolute;
+	z-index: 1;
+	overflow: hidden;
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+}
+.flex-box {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #000000;
+}
+.flex-box div {
+	width: 100%;
+	height: 200px;
+	border: 1px solid #000000;
+}
+.blurCircle {
+	border-radius: 50%;
+	background: palevioletred;
+	width: 200px;
+	width: 200px !important;
+	position: absolute;
+	position: fixed;
+}
+.pointer {
+	position: fixed;
+	width: 40px;
+	height: 40px;
+	margin-left: -20px;
+	margin-top: -20px;
+	border-radius: 50%;
+	border: 2px solid blueviolet;
+	transition: transform 0.3s ease;
+	transform-origin: center center;
+	pointer-events: none;
+	z-index: 1000;
+}
+
+.grow,
+.grow-small {
+	transform: scale(4);
+	background: white;
+	mix-blend-mode: difference;
+	border: none;
+}
+
+.grow-small {
+	transform: scale(2);
+}

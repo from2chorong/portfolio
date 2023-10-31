@@ -1,0 +1,97 @@
+let svgns = "http://www.w3.org/2000/svg";
+let root = document.querySelector(".cursor");
+let ease = 0.75;
+
+let pointer = {
+	x: window.innerWidth / 2,
+	y: window.innerHeight / 2
+};
+
+window.addEventListener("mousemove", (event) => {
+	pointer.x = event.clientX;
+	pointer.y = event.clientY;
+});
+
+let leader = (prop) => {
+	return prop === "x" ? pointer.x : pointer.y;
+}
+
+let total = 100;
+for (let i = 0; i < total; i++) {
+	leader = createLine(leader, i);
+}
+
+function createLine(leader, i) {
+
+	let line = document.createElementNS(svgns, "line");
+	root.appendChild(line);
+
+	gsap.set(line, { x: -15, y: -15, opacity: (total - i) / total });
+
+	let pos = gsap.getProperty(line);
+
+	gsap.to(line, {
+		duration: 1000,
+		x: "+=1",
+		y: "+=1",
+		repeat: -1,
+		ease: "none",
+		modifiers: {
+			x: () => {
+				let posX = pos("x");
+				let leaderX = leader("x");
+				let x = posX + (leaderX - posX) * ease;
+				line.setAttribute("x2", leaderX - x);
+				return x;
+			},
+			y: () => {
+				let posY = pos("y");
+				let leaderY = leader("y");
+				let y = posY + (leaderY - posY) * ease;
+				line.setAttribute("y2", leaderY - y);
+				return y;
+			}
+		}
+	});
+
+	return pos;
+}
+
+
+
+let cursor = document.querySelector('.pointer');
+let cursorScale = document.querySelectorAll('.cursor-scale'); 
+let mouseX = 0;
+let mouseY = 0;
+
+gsap.to({}, 0.016, {
+  repeat: -1,
+  onRepeat: function(){
+    gsap.set(cursor, {
+      css: {
+        left: mouseX,
+        top: mouseY,
+      }
+    })
+  }
+});
+
+window.addEventListener('mousemove', (e)=> {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+})
+
+cursorScale.forEach(link => {
+  link.addEventListener('mousemove', ()=> {
+    cursor.classList.add('grow'); 
+    if (link.classList.contains('small')){
+      cursor.classList.remove('grow');
+      cursor.classList.add('grow-small');
+    }
+  });
+  
+  link.addEventListener('mouseleave', ()=> {
+    cursor.classList.remove('grow');
+    cursor.classList.remove('grow-small');
+  });
+})
