@@ -1,13 +1,13 @@
-let svgLine = 'http://www.w3.org/2000/svg';
-let cursorLine = document.querySelector('.cursor-line');
-let ease = 0.60;
+let svgns = "http://www.w3.org/2000/svg";
+let root = document.querySelector(".cursor-line");
+let ease = 0.75;
 
 let pointer = {
 	x: window.innerWidth / 2,
 	y: window.innerHeight / 2
 };
 
-window.addEventListener('mousemove', (event) => {
+window.addEventListener("mousemove", (event) => {
 	pointer.x = event.clientX;
 	pointer.y = event.clientY;
 });
@@ -23,8 +23,8 @@ for (let i = 0; i < total; i++) {
 
 function createLine(leader, i) {
 
-	let line = document.createElementNS(svgLine, 'line');
-	cursorLine.appendChild(line);
+	let line = document.createElementNS(svgns, "line");
+	root.appendChild(line);
 
 	gsap.set(line, { x: -15, y: -15, opacity: (total - i) / total });
 
@@ -59,8 +59,7 @@ function createLine(leader, i) {
 
 
 
-let cursorBox = document.querySelector('.cursor-box');
-let cursorPointer = document.querySelector('.cursor-pointer');
+let cursor = document.querySelector('.cursor-pointer');
 let cursorScale = document.querySelectorAll('.cursor-scale');
 let mouseX = 0;
 let mouseY = 0;
@@ -68,7 +67,7 @@ let mouseY = 0;
 gsap.to({}, 0.020, {
 	repeat: -2,
 	onRepeat: function () {
-		gsap.set(cursorPointer, {
+		gsap.set(cursor, {
 			css: {
 				top: mouseY,
 				left: mouseX,
@@ -82,11 +81,17 @@ window.addEventListener('mousemove', (e) => {
 	mouseY = e.clientY;
 })
 
-cursorScale.forEach(scale => {
-	scale.addEventListener('mousemove', () => {
-		cursorBox.classList.add('grow');
+cursorScale.forEach(link => {
+	link.addEventListener('mousemove', () => {
+		cursor.classList.add('grow');
+		if (link.classList.contains('small')) {
+			cursor.classList.remove('grow');
+			cursor.classList.add('grow-small');
+		}
 	});
-	scale.addEventListener('mouseleave', () => {
-		cursorBox.classList.remove('grow');
+
+	link.addEventListener('mouseleave', () => {
+		cursor.classList.remove('grow');
+		cursor.classList.remove('grow-small');
 	});
 })
