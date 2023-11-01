@@ -121,6 +121,10 @@ line {
   display: flex;
   flex-direction: column;
   border: 1px solid #fff;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-box div {
@@ -168,4 +172,11 @@ line {
 .cursor-box.grow .cursor-pointer {
   background: white;
   transform: scale(4);
+}
+
+.flex-box div.cont {
+  width: 800px;
+  height: 400px;
+  transition: all 0.6s;
+  transform-style: preserve-3d;
 }
