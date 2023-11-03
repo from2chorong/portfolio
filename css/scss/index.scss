@@ -82,8 +82,8 @@ line {
 	background: palevioletred;
 	width: 200px;
 	width: 200px !important;
+	bottom: 100%;
 	position: absolute;
-	position: fixed;
 }
 .cursor-pointer {
 	position: fixed;
@@ -93,7 +93,7 @@ line {
 	margin-top: -5px;
 	border-radius: 50%;
 	background: blueviolet;
-	transition: all 0.4s linear;
+	transition: transform 0.4s linear;
 	transform-origin: center center;
 	pointer-events: none;
 	z-index: 1000;
@@ -107,7 +107,7 @@ line {
 }
 .cursor-box.grow .cursor-pointer {
 	background: white;
-	transform: scale(4);
+	transform: scale(10);
 }
 .flex-box div.cont {
 	width: 800px;
