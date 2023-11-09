@@ -82,10 +82,14 @@ header .header-box * {
   color: var(--color-white);
 }
 header .buttons-box {
-  gap: 0 20px;
+  gap: 0 40px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+header .buttons-box a {
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 header .list-button {
   width: 28px;

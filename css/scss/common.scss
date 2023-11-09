@@ -26,8 +26,12 @@ header {
 		}
 	}
 	.buttons-box {
-		gap: 0 20px;
+		gap: 0 40px;
 		@include flex(center, start);
+		a {
+			font-size: 1.8rem;
+			font-weight: 600;
+		}
 	}
 	.list-button {
 		width: 28px;
