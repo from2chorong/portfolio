@@ -61,7 +61,7 @@ function createLine(leader, i) {
 
 let cursorBox = document.querySelector('.cursor-box');
 let cursorPointer = document.querySelector('.cursor-pointer');
-let cursorScale = document.querySelectorAll('.cursor-scale');
+let cursorHover = document.querySelectorAll('.cursor-hover');
 let mouseX = 0;
 let mouseY = 0;
 
@@ -82,11 +82,11 @@ window.addEventListener('mousemove', (e) => {
 	mouseY = e.clientY;
 })
 
-cursorScale.forEach(scale => {
+cursorHover.forEach(scale => {
 	scale.addEventListener('mousemove', () => {
-		cursorBox.classList.add('grow');
+		cursorBox.classList.add('hover');
 	});
 	scale.addEventListener('mouseleave', () => {
-		cursorBox.classList.remove('grow');
+		cursorBox.classList.remove('hover');
 	});
 })

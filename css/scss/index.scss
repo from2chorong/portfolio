@@ -1,23 +1,56 @@
 @import "_reset";
 @import "_variables";
 
+// cursor
+.cursor-box {
+	.cursor-line {
+		@include wh;
+		@include position(absolute, false, false);
+		line {
+			stroke: var(--color-main);
+			stroke-width: 2px;
+		}
+	}
+	.cursor-pointer {
+		position: fixed;
+		width: 10px;
+		height: 10px;
+		margin-left: -5px;
+		margin-top: -5px;
+		border-radius: 50%;
+		background: var(--color-main);;
+		transform-origin: center center;
+		transition: transform 0.4s linear;
+		pointer-events: none;
+		z-index: 1000;
+	}
+	&.hover * {
+		mix-blend-mode: difference;
+	}
+	&.hover .cursor-line line {
+		stroke: var(--color-white);
+	}
+	&.hover .cursor-pointer {
+		background: var(--color-white);
+		transform: scale(10);
+	}
+	
+}
+
 .scroll-wrap {
 	background: var(--color-black);
 	overflow: hidden;
 	@include wh;
 	@include position(fixed, false, false);
-	.scroll-container {
-		width: 100%;
-		position: absolute;
-		overflow: hidden;
-		backface-visibility: hidden;
-		transform-style: preserve-3d;
-	}
-	.box {
-		width: 100%;
-		height: 2000px;
-		border: 2px solid white;
-	}
+}
+.scroll-container {
+	width: 100%;
+	position: absolute;
+	overflow: hidden;
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+}
+.scroll-wrap {
 	.test {
 		position: fixed;
 		width: 200px;
@@ -25,40 +58,6 @@
 		top: 50%;
 		background: beige;
 	}
-}
-body {
-	width: 100%;
-	height: 100vh;
-	border: 2px solid blue;
-}
-.cursor-line {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-line {
-	stroke: blueviolet;
-	stroke-width: 2;
-}
-.scroll-wrap {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	overflow: hidden;
-}
-.scroll-container {
-	width: 100%;
-	position: absolute;
-	z-index: 1;
-	overflow: hidden;
-	backface-visibility: hidden;
-	transform-style: preserve-3d;
 }
 .flex-box {
 	display: flex;
@@ -84,30 +83,6 @@ line {
 	width: 200px !important;
 	bottom: 100%;
 	position: absolute;
-}
-.cursor-pointer {
-	position: fixed;
-	width: 10px;
-	height: 10px;
-	margin-left: -5px;
-	margin-top: -5px;
-	border-radius: 50%;
-	background: blueviolet;
-	transition: transform 0.4s linear;
-	transform-origin: center center;
-	pointer-events: none;
-	z-index: 1000;
-}
-
-.cursor-box.grow * {
-	mix-blend-mode: difference;
-}
-.cursor-box.grow line {
-	stroke: white;
-}
-.cursor-box.grow .cursor-pointer {
-	background: white;
-	transform: scale(10);
 }
 .flex-box div.cont {
 	width: 800px;
