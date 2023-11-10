@@ -110,34 +110,29 @@ button {
   backface-visibility: hidden;
   transform-style: preserve-3d;
 }
-
-.scroll-wrap .test {
-  position: fixed;
-  width: 200px;
-  height: 200px;
-  top: 50%;
-  background: beige;
+.scroll-container .inner {
+  padding: 80px 0 0;
 }
 
-.flex-box {
+.text-box {
+  font-size: 80px;
+  color: #fff;
+}
+
+.img-box {
   display: flex;
   flex-direction: column;
-  border: 1px solid #fff;
-  transform-style: preserve-3d;
   perspective: 800px;
+  transform-style: preserve-3d;
   justify-content: center;
   align-items: center;
 }
-
-.flex-box div {
+.img-box .cont {
   width: 100%;
-  height: 200px;
-  border: 1px solid #fff;
-  color: #fff;
-  font-size: 8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 480px;
+  border: 1px solid yellow;
+  transform-style: preserve-3d;
+  transition: all 0.8s;
 }
 
 .blurCircle {
@@ -147,11 +142,4 @@ button {
   width: 200px !important;
   bottom: 100%;
   position: absolute;
-}
-
-.flex-box div.cont {
-  width: 800px;
-  height: 400px;
-  transition: all 0.6s;
-  transform-style: preserve-3d;
 }

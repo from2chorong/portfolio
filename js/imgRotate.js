@@ -1,30 +1,47 @@
-const multiple = 40;
-const mouseOverContainer = document.getElementsByTagName('body')[0];
-const elements = document.querySelectorAll('.cont');
+let images = document.querySelectorAll(".cont");
+let imageList = [];
 
-function transformElement(element, x, y) {
-	let box = element.getBoundingClientRect();
-	let calcX = -(y - box.y - box.height / 2) / multiple;
-	let calcY = (x - box.x - box.width / 2) / multiple;
+images.forEach(function (image) {
+	let data = {
+		localX: 0,
+		localY: 0,
+		x: 0,
+		y: 0,
+		friction: 1 / 20,
+	};
 
-	element.style.transform =
-		'rotateX(' + calcX + 'deg) ' + 'rotateY(' + calcY + 'deg';
-}
+	imageList.push(data);
 
-function resetTransform(element) {
-	element.style.transform = 'rotateX(0) rotateY(0)';
-}
+	image.addEventListener('mousemove', function (e) {
+		let mouseX = Math.max(
+			-100,
+			Math.min(100, window.innerWidth / 2 - e.clientX)
+		);
+		let mouseY = Math.max(
+			-100,
+			Math.min(100, window.innerHeight / 2 - e.clientY)
+		);
 
-elements.forEach((element) => {
-	element.addEventListener('mousemove', (e) => {
-		window.requestAnimationFrame(function () {
-			transformElement(element, e.clientX, e.clientY);
-		});
+		data.localX = (10 * mouseX) / 100;
+		data.localY = (10 * mouseY) / 100;
 	});
 
-	element.addEventListener('mouseleave', (e) => {
-		window.requestAnimationFrame(function () {
-			resetTransform(element);
-		});
+	image.addEventListener('mouseleave', function () {
+		data.localX = 0;
+		data.localY = 0;
 	});
 });
+function imageMove() {
+	images.forEach(function (image, index) {
+		let data = imageList[index];
+
+		data.x += (data.localX - data.x) * data.friction;
+		data.y += (data.localY - data.y) * data.friction;
+
+		image.style.transform = `rotateY(${-data.x}deg) rotateX(${data.y}deg)`;
+	});
+
+	window.requestAnimationFrame(imageMove);
+}
+
+imageMove();
