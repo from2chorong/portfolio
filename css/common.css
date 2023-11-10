@@ -81,22 +81,39 @@ header .header-box {
   align-items: center;
   justify-content: space-between;
 }
-header .header-box * {
-  color: var(--color-white);
-}
 header .buttons-box {
   gap: 0 40px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
+header .buttons-box > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 header .buttons-box a {
   font-size: 1.8rem;
   font-weight: 600;
 }
+header .mode-button {
+  position: relative;
+}
+header .mode-button span {
+  transition: all 0.4s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+header .mode-button.dark span:last-child {
+  opacity: 0;
+}
+header .mode-button.light span:first-child {
+  opacity: 0;
+}
 
 footer p {
-  color: var(--color-white);
   font-size: 1.2rem;
   opacity: 0.2;
   width: 100%;

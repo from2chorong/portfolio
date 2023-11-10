@@ -57,8 +57,6 @@ function createLine(leader, i) {
 	return pos;
 }
 
-
-
 let cursorBox = document.querySelector('.cursor-box');
 let cursorPointer = document.querySelector('.cursor-pointer');
 let cursorHover = document.querySelectorAll('.cursor-hover');

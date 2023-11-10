@@ -16,4 +16,8 @@ $(document).ready(function () {
 		pin: true,
 		scrub: true,
 	});
+
+	$(".mode-button").on("click", function () {
+		$(".scroll-wrap, .mode-button").toggleClass("dark light");
+	})
 })

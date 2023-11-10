@@ -27,16 +27,33 @@ header {
 	.header-box {
 		@include wh;
 		@include flex(center, between);
-		* {
-			color: var(--color-white);
-		}
 	}
 	.buttons-box {
 		gap: 0 40px;
 		@include flex(center, start);
+		> * {
+			@include flex(center, center);
+		}
 		a {
 			font-size: 1.8rem;
 			font-weight: 600;
+		}
+	}
+	.mode-button {
+		position: relative;
+		span {
+			transition: all 0.4s;
+			@include position(absolute, true, true);
+		}
+		&.dark {
+			span:last-child {
+				opacity: 0;
+			}
+		}
+		&.light {
+			span:first-child {
+				opacity: 0;
+			}
 		}
 	}
 }
@@ -44,7 +61,6 @@ header {
 // footer
 footer {
 	p {
-		color: var(--color-white);
 		font-size: 1.2rem;
 		opacity: 0.2;
 		@include wh;
