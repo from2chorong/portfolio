@@ -7,7 +7,6 @@
 		@include wh;
 		@include position(absolute, false, false);
 		line {
-			stroke: var(--color-main);
 			stroke-width: 2px;
 		}
 	}
@@ -18,7 +17,6 @@
 		margin-left: -6px;
 		margin-top: -6px;
 		border-radius: 50%;
-		background: var(--color-main);;
 		transform-origin: center center;
 		transition: transform 0.4s linear;
 		pointer-events: none;
@@ -28,10 +26,8 @@
 		mix-blend-mode: difference;
 	}
 	&.hover .cursor-line line {
-		stroke: var(--color-white);
 	}
 	&.hover .cursor-pointer {
-		background: var(--color-white);
 		transform: scale(4);
 	}
 }
@@ -46,11 +42,53 @@
 		* {
 			color: var(--color-white);
 		}
+		.cursor-box {
+			.cursor-line {
+				line {
+					stroke: var(--color-main);
+				}
+			}
+			.cursor-pointer {
+				background: var(--color-main);
+			}
+			&.hover .cursor-line line {
+				stroke: var(--color-white);
+			}
+			&.hover .cursor-pointer {
+				background: var(--color-white);
+			}
+		}
+		.img-box {
+			.cont {
+				background: var(--color-main);
+			}
+		}
 	}
 	&.light {
 		background: var(--color-white);
 		* {
 			color: var(--color-black);
+		}
+		.cursor-box {
+			.cursor-line {
+				line {
+					stroke: var(--color-sub);
+				}
+			}
+			.cursor-pointer {
+				background: var(--color-sub);
+			}
+			&.hover .cursor-line line {
+				stroke: var(--color-white);
+			}
+			&.hover .cursor-pointer {
+				background: var(--color-white);
+			}
+		}
+		.img-box {
+			.cont {
+				background: var(--color-sub);
+			}
 		}
 	}
 }
@@ -65,19 +103,21 @@
 	width: 100%;
 	height: 100vh;
 	font-size: 80px;
-	border: 1px solid tan;
 	@include flex(center, center);
 }
 .img-box {
-	perspective: 800px;
-	justify-content: center;
-	align-items: center;
+	gap: 40px 0;
 	transition: all 0.8s;
 	@include gird(true, false, 1, 0);
+	.item {
+		width: 100%;
+		height: 100vh;
+		perspective: 800px;
+		@include flex(center, center);
+	}
 	.cont {
 		width: 100%;
 		height: 480px;
-		border: 1px solid yellow;
 		transform-style: preserve-3d;
 		font-size: 80px;
 		transition: all 0.8s;
