@@ -2,6 +2,13 @@
 @import "_variables";
 
 // common
+.material-symbols-outlined {
+	font-variation-settings:
+	'FILL' 1,
+	'wght' 100,
+	'GRAD' 0,
+	'opsz' 20
+}
 .inner {
 	max-width: 1280px;
 	margin: 0 auto;
@@ -32,17 +39,23 @@ header {
 			font-weight: 600;
 		}
 	}
-	.list-button {
-		width: 28px;
-		height: 28px;
-		gap: 4px;
-		@include gird(true, true, 2, 2);
-		span {
-			display: block;
-			border: 2px solid var(--color-white);
-			mix-blend-mode: difference;
-			border-radius: 2px;
-			@include wh;
-		}
+}
+
+// footer
+footer {
+	p {
+		color: var(--color-white);
+		font-size: 1.2rem;
+		opacity: 0.2;
+		@include wh;
+		@include flex(center, center);
 	}
+}
+
+header,
+footer {
+	height: 100px;
+}
+main {
+	border: 1px solid yellowgreen;
 }

@@ -48,8 +48,6 @@
 	overflow: hidden;
 	backface-visibility: hidden;
 	transform-style: preserve-3d;
-	.inner {
-	}
 }
 .text-box {
 	width: 100%;
@@ -73,6 +71,8 @@
 		border: 1px solid yellow;
 		transform-style: preserve-3d;
 		transition: all 0.8s;
+		color: #fff;
+		font-size: 80px;
 	}
 }
 .blurCircle {
