@@ -19,5 +19,9 @@ $(document).ready(function () {
 
 	$(".mode-button").on("click", function () {
 		$(".scroll-wrap, .mode-button").toggleClass("dark light");
+	});
+
+	$(".list-button").on("click", function () {
+		
 	})
 })

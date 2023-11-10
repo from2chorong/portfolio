@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .grid-container {
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            img {
+                position: absolute;
+                max-width: 200px;
+                height: auto;
+                transition: all 0.3s ease;
+                transform: translate(var(--x-position), var(--y-position))
+                    scale(0.75);
+            }
+
+            img:hover {
+                transform: translate(var(--x-position), var(--y-position))
+                    scale(1.25);
+                z-index: 999 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <img src="https://source.unsplash.com/300x350/?woman" />
+            <img src="https://source.unsplash.com/500x300/?nature" />
+            <img src="https://source.unsplash.com/500x300/?architecture" />
+            <img src="https://source.unsplash.com/300x350/?bikini" />
+            <img src="https://source.unsplash.com/500x300/?mountain" />
+            <img src="https://source.unsplash.com/500x300/?beach" />
+            <img src="https://picsum.photos/500/500?random=1" />
+            <img src="https://picsum.photos/500/300?random=2" />
+            <img src="https://picsum.photos/500/300?random=3" />
+            <img src="https://picsum.photos/500/300?random=4" />
+        </div>
+
+        <script>
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            var randomOrder = function (element) {
+                // Viewport Dimensions
+                var vpHeight = window.innerHeight;
+                var vpWidth = window.innerWidth;
+
+                // Image Position
+                var xPos = getRandomInt(0, vpWidth - element.offsetWidth);
+                var yPos = getRandomInt(0, vpHeight - element.offsetHeight);
+                var zIndex = getRandomInt(0, 13);
+
+                element.style.cssText +=
+                    "--x-position:" +
+                    xPos +
+                    "px; --y-position:" +
+                    yPos +
+                    "px; z-index:" +
+                    zIndex;
+            };
+
+            //Setup
+            var imgs = document.querySelectorAll("img");
+
+            imgs.forEach((the_img) => {
+                window.addEventListener("load", function () {
+                    randomOrder(the_img);
+                });
+            }); //end foreach
+        </script>
+    </body>
+</html>
