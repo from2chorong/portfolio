@@ -17,7 +17,6 @@ header {
 	left: 0;
 	right: 0;
 	z-index: 2;
-	border: 2px solid white;
 	.header-box {
 		@include wh;
 		@include flex(center, between);
