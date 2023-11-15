@@ -34,7 +34,7 @@
 
 .scroll-wrap {
 	transition: all 0.4s;
-	overflow: hidden;
+	// overflow: hidden;
 	@include wh;
 	@include position(fixed, false, false);
 	&.dark {
@@ -95,7 +95,7 @@
 .scroll-container {
 	width: 100%;
 	position: absolute;
-	overflow: hidden;
+	// overflow: hidden;
 	backface-visibility: hidden;
 	transform-style: preserve-3d;
 }
@@ -105,19 +105,24 @@
 	font-size: 80px;
 	@include flex(center, center);
 }
-.img-box {
-	width: 100%;
-	height: 800vh;
-	gap: 40px 0;
-	transition: all 0.8s;
-	@include gird(true, false, 1, 0);
-	.item {
+main {
+	.inner {
 		width: 100%;
 		height: 100vh;
+	}
+}
+.img-box {
+	width: 100%;
+	gap: 40px 0;
+	transition: all 0.8s;
+	@include wh;
+	@include gird(true, false, 1, 0);
+	.item {
 		perspective: 800px;
-		// position: absolute;
+		position: absolute;
 		// left: 50%;
 		// transform: translateX(-50%);
+		@include wh;
 		@include flex(center, center);
 	}
 	.cont {

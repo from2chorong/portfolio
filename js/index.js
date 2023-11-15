@@ -1,39 +1,46 @@
 $(document).ready(function () {
 
+	// smoothScroll(".scroll-container");
 
-	let cont = document.querySelector(".img-box");
-	let scrollTween = gsap.to(".item", {
-		ease: "none",
+	gsap.registerPlugin(ScrollTrigger);
+	let item = $(".item"),
+		pinDistance = item.outerHeight() * item.length;
+	
+
+	gsap.set(".img-box", { autoAlpha: 1 });
+
+	const timeline = gsap.timeline({
+		defaults: {
+			overwrite: "auto",
+		},
 		scrollTrigger: {
-			trigger: cont,
-			pin: cont,
-			start: "center center",
-			end: "+=" + 8000,
-			scrub: 0.1,
-		}
+			pin: true,
+			scrub: true,
+			start: "top top",
+			end: "+=" + 9000,
+			trigger: "main .inner",
+		},
 	});
 
-	let targets = gsap.utils.toArray(".item");
-	targets.forEach((item, index) => {
-		gsap
-			.timeline({
-				ease: "none",
-				scrollTrigger: {
-					trigger: item,
-					containerAnimation: scrollTween,
-					start: "top center", // Adjust as needed
-					end: "bottom center", // Adjust as needed
-					pin: true,
-					scrub: true,
-				}
-			})
-			.fromTo(
-				item,
-				{ yPercent: 100 * index, opacity: 1 },
-				{ yPercent: 0, opacity: 1 }
-			);
-	});
-// 아시발모르겟다
+	const stagger = 0.8;
+
+	gsap.set(".img-box", { autoAlpha: 1 });
+
+	timeline
+		.from(item, {
+			stagger: stagger,
+			y: "-100vh",
+			opacity: 0,
+			duration: 1,
+			overwrite: true,
+		})
+		.to(item, {
+			stagger: stagger,
+			y: "0",
+			opacity: 1,
+			duration: 1,
+			overwrite: true,
+		}, stagger);
 
 
 	$(".mode-button").on("click", function () {

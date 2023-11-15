@@ -88,7 +88,6 @@ button {
 
 .scroll-wrap {
   transition: all 0.4s;
-  overflow: hidden;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -143,7 +142,6 @@ button {
 .scroll-container {
   width: 100%;
   position: absolute;
-  overflow: hidden;
   backface-visibility: hidden;
   transform-style: preserve-3d;
 }
@@ -157,18 +155,25 @@ button {
   justify-content: center;
 }
 
+main .inner {
+  width: 100%;
+  height: 100vh;
+}
+
 .img-box {
   width: 100%;
-  height: 800vh;
   gap: 40px 0;
   transition: all 0.8s;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
 }
 .img-box .item {
-  width: 100%;
-  height: 100vh;
   perspective: 800px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
