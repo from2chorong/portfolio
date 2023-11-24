@@ -29,7 +29,7 @@ $(document).ready(function () {
 	timeline
 		.from(item, {
 			stagger: stagger,
-			y: "-100vh",
+			y: "100vh",
 			opacity: 0,
 			duration: 1,
 			overwrite: true,

@@ -120,6 +120,7 @@ main {
 	.item {
 		perspective: 800px;
 		position: absolute;
+		border: 1px solid green;
 		// left: 50%;
 		// transform: translateX(-50%);
 		@include wh;
