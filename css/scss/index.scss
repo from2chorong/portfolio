@@ -109,16 +109,17 @@ main {
 	.inner {
 		width: 100%;
 		height: 100vh;
+		perspective: 800px;
 	}
 }
 .img-box {
 	width: 100%;
 	gap: 40px 0;
+	transform-style: preserve-3d;
 	transition: all 0.8s;
 	@include wh;
 	@include gird(true, false, 1, 0);
 	.item {
-		perspective: 800px;
 		position: absolute;
 		border: 1px solid green;
 		// left: 50%;
@@ -129,7 +130,7 @@ main {
 	.cont {
 		width: 100%;
 		height: 480px;
-		transform-style: preserve-3d;
+		// transform-style: preserve-3d;
 		color: black;
 		font-size: 80px;
 		transition: all 0.8s;

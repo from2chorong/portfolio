@@ -6,7 +6,6 @@ $(document).ready(function () {
 	let item = $(".item"),
 		pinDistance = item.outerHeight() * item.length;
 	
-
 	gsap.set(".img-box", { autoAlpha: 1 });
 
 	const timeline = gsap.timeline({
@@ -17,7 +16,7 @@ $(document).ready(function () {
 			pin: true,
 			scrub: true,
 			start: "top top",
-			end: "+=" + 9000,
+			end: "+=" + (pinDistance * 1.2),
 			trigger: "main .inner",
 		},
 	});
@@ -31,17 +30,16 @@ $(document).ready(function () {
 			stagger: stagger,
 			y: "100vh",
 			opacity: 0,
-			duration: 1,
+			// duration: 1,
 			overwrite: true,
 		})
 		.to(item, {
 			stagger: stagger,
 			y: "0",
 			opacity: 1,
-			duration: 1,
+			// duration: 1,
 			overwrite: true,
-		}, stagger);
-
+		}, stagger)
 
 	$(".mode-button").on("click", function () {
 		$(".scroll-wrap, .mode-button").toggleClass("dark light");

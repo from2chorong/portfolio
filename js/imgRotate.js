@@ -1,4 +1,4 @@
-let images = document.querySelectorAll(".cont");
+let images = document.querySelectorAll(".img-box");
 let imageList = [];
 
 images.forEach(function (image) {
