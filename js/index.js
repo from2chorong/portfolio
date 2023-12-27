@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
 	// smoothScroll(".scroll-container");
-
-	gsap.registerPlugin(ScrollTrigger);
+	// gsap.registerPlugin(ScrollTrigger);
 	let item = $(".item"),
 		pinDistance = item.outerHeight() * item.length;
 	
@@ -18,6 +17,7 @@ $(document).ready(function () {
 			start: "top top",
 			end: "+=" + (pinDistance * 1.2),
 			trigger: "main .inner",
+			scroller: ".scroll-container",
 		},
 	});
 
@@ -40,6 +40,8 @@ $(document).ready(function () {
 			// duration: 1,
 			overwrite: true,
 		}, stagger)
+	
+		ScrollTrigger.refresh();
 
 	$(".mode-button").on("click", function () {
 		$(".scroll-wrap, .mode-button").toggleClass("dark light");

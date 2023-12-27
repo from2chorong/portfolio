@@ -1,75 +1,31 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-smoothScroll(".scroll-container");
+	const locoScroll = new LocomotiveScroll({
+		el: document.querySelector(".scroll-container"),
+		smooth: true
+	});
 
-function smoothScroll(content, viewport, smoothness) {
-	content = gsap.utils.toArray(content)[0];
-	smoothness = smoothness || 1;
+	locoScroll.on("scroll", ScrollTrigger.update);
 
-	gsap.set(viewport || content.parentNode, { width: "100%", height: "100%", overflow: "hidden", position: "fixed", top: 0, left: 0, right: 0, bottom: 0 });
-	gsap.set(content, { width: "100%", overflow: "visible" });
-
-	let getProp = gsap.getProperty(content),
-		setProp = gsap.quickSetter(content, "y", "px"),
-		setScroll = ScrollTrigger.getScrollFunc(window),
-		removeScroll = () => content.style.overflow = "visible",
-		killScrub = trigger => {
-			let scrub = trigger.getTween ? trigger.getTween() : gsap.getTweensOf(trigger.animation)[0]; // getTween() was added in 3.6.2
-			scrub && scrub.pause();
-			trigger.animation.progress(trigger.progress);
-		},
-		height, isProxyScrolling;
-
-	function refreshHeight() {
-		height = content.clientHeight;
-		content.style.overflow = "visible"
-		document.body.style.height = height + "px";
-		return height - document.documentElement.clientHeight;
-	}
-
-	ScrollTrigger.addEventListener("refresh", () => {
-		removeScroll();
-		requestAnimationFrame(removeScroll);
-	})
-	ScrollTrigger.defaults({ scroller: content });
-	ScrollTrigger.prototype.update = p => p;
-
-	ScrollTrigger.scrollerProxy(content, {
+	ScrollTrigger.scrollerProxy(".scroll-container", {
 		scrollTop(value) {
-			if (arguments.length) {
-				isProxyScrolling = true;
-				setProp(-value);
-				setScroll(value);
-				return;
-			}
-			return -getProp("y");
+			return arguments.length
+				? locoScroll.scrollTo(value, 0, 0)
+				: locoScroll.scroll.instance.scroll.y;
 		},
-		scrollHeight: () => document.body.scrollHeight,
 		getBoundingClientRect() {
-			return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-		}
-	});
-
-	return ScrollTrigger.create({
-		animation: gsap.fromTo(content, { y: 0 }, {
-			y: () => document.documentElement.clientHeight - height,
-			ease: "none",
-			onUpdate: ScrollTrigger.update
-		}),
-		scroller: window,
-		invalidateOnRefresh: true,
-		start: 0,
-		end: refreshHeight,
-		refreshPriority: -999,
-		scrub: smoothness,
-		onUpdate: self => {
-			if (isProxyScrolling) {
-				killScrub(self);
-				isProxyScrolling = false;
-			}
+			return {
+				width: window.innerWidth,
+				height: window.innerHeight,
+				top: 0,
+				left: 0
+			};
 		},
-		onRefresh: killScrub
+
+		pinType: document.querySelector(".scroll-container").style.transform
+			? "transform"
+			: "fixed"
 	});
 
-
-}
+	ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+	ScrollTrigger.refresh();
