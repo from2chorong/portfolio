@@ -1,7 +1,5 @@
 $(document).ready(function () {
-
-	// smoothScroll(".scroll-container");
-	// gsap.registerPlugin(ScrollTrigger);
+	
 	let item = $(".item"),
 		pinDistance = item.outerHeight() * item.length;
 	
