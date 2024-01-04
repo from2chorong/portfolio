@@ -46,33 +46,40 @@ $(document).ready(function () {
 	});
 
 	$(".list-button").on("click", function () {
-    ScrollTrigger.kill();
-    $(".img-box .item").each(function () {
-        let index = $(this).index();
-        let topValue = "-100vh";
-        let leftValue = (index % 4) * 25 + "%";
 
-        // Check if the index is within specific ranges
-        if (index >= 4 && index <= 7) {
-            topValue = "-75vh";
-        } else if (index >= 8 && index <= 11) {
-            topValue = "-50vh";
-        } else if (index >= 12 && index <= 15) {
-            topValue = "-25vh";
-        }
+    // Using GSAP to animate the items
+		$(".img-box .item").each(function (index, element) {
+			$(this).css("align-items", "flex-start");
+			$(this).find(".cont").css("height", "50%");
+			let leftValue = (index % 4) * 25 + "%";
+			let topValue;
 
-			$(this).animate({
-					width: "25%",
-					top: topValue,
-					left: leftValue,
-					opacity: "1",
-        });
+			switch (true) {
+				case index >= 4 && index <= 7:
+					topValue = "50%";
+					break;
+				case index >= 8 && index <= 11:
+					topValue = "100%";
+					break;
+				case index >= 12 && index <= 15:
+					topValue = "150%";
+					break;
+				default:
+					topValue = "0";
+			}
 
-			$(this).css({
-          transitionDelay: index * 0.2,
-        });
+			gsap.to(element, {
+				width: "25%",
+				y: topValue,
+				left: leftValue,
+				opacity: 1,
+				duration: 0.2,
+				delay: index * 0.02,
+			});
     });
-});
+	});
+
+
 
 
 
