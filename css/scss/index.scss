@@ -32,13 +32,21 @@
 	}
 }
 
+.noise {
+	background: url("/img/noise.gif") repeat;
+	position: fixed;
+	z-index: 10;
+	opacity: 0.08;
+	pointer-events: none;
+	@include wh;
+}
 .scroll-wrap {
 	transition: all 0.4s;
 	// overflow: hidden;
 	@include wh;
 	@include position(fixed, false, false);
 	&.dark {
-		background: var(--color-black);
+		background-color: var(--color-black);
 		* {
 			color: var(--color-white);
 		}
