@@ -45,4 +45,35 @@ $(document).ready(function () {
 		$(".scroll-wrap, .mode-button").toggleClass("dark light");
 	});
 
+	$(".list-button").on("click", function () {
+    ScrollTrigger.kill();
+    $(".img-box .item").each(function () {
+        let index = $(this).index();
+        let topValue = "-100vh";
+        let leftValue = (index % 4) * 25 + "%";
+
+        // Check if the index is within specific ranges
+        if (index >= 4 && index <= 7) {
+            topValue = "-75vh";
+        } else if (index >= 8 && index <= 11) {
+            topValue = "-50vh";
+        } else if (index >= 12 && index <= 15) {
+            topValue = "-25vh";
+        }
+
+			$(this).animate({
+					width: "25%",
+					top: topValue,
+					left: leftValue,
+					opacity: "1",
+        });
+
+			$(this).css({
+          transitionDelay: index * 0.2,
+        });
+    });
+});
+
+
+
 });
