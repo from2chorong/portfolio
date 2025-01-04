@@ -17,7 +17,7 @@ function renderList() {
         figure.classList.add('img');
 
         const img = document.createElement('img');
-        img.src = `/images/projects/${list.image}.jpg`;
+        img.src = `/portfolio/images/projects/${list.image}.jpg`;
         img.alt = list.img;
         img.loading = 'lazy';
 
