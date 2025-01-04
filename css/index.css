@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+@import url("https://fastly.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+body {
+  overflow: hidden;
+}
+body * {
+  font-family: "Lato", "Pretendard", sans-serif;
+  cursor: none;
+}
+
+.cursor {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--color-white);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: transform 0.4s ease-in-out;
+}
+
+main {
+  width: 100%;
+  max-height: 100vh;
+  background: var(--color-black);
+  position: relative;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+main .container {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  perspective: 500px;
+  overscroll-behavior: contain;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+main .list {
+  height: 33.3333333333vh;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+main .list a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+main .list:hover .text-shadow {
+  opacity: 1;
+}
+main .img,
+main .img img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+main .img {
+  width: 100%;
+  height: 100%;
+}
+main .img::before, main .img::after {
+  content: "";
+  display: block;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+main .img::before {
+  background: rgba(0, 0, 0, 0.6);
+}
+main .img::after {
+  background: url("/images/noise.gif") no-repeat center/cover;
+  opacity: 0.1;
+  pointer-events: none;
+}
+main .img img {
+  min-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+main .text {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+  color: var(--color-white);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+main .text span {
+  font-size: 1.4rem;
+}
+main .text h6 {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+main .text-shadow {
+  white-space: nowrap;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: transform 0.6s;
+}
+main .text-shadow h6 {
+  font-size: 6.2rem;
+  opacity: 0.2;
+}
+
+.intro {
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-black);
+  z-index: 10;
+  transition: all 0.6s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.intro p {
+  color: var(--color-white);
+  font-size: 4rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+  position: relative;
+}
+.intro p::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--color-black);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.4s ease-in-out;
+}
+.intro p:nth-child(odd)::after {
+  left: 0;
+}
+.intro p:nth-child(even)::after {
+  right: 0;
+}
+.intro p.off::after {
+  width: 100%;
+}
+.intro.off {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1400px) {
+  main .text h6 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 1200px) {
+  main .container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 1024px) {
+  main .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  main .list {
+    height: 25vh;
+  }
+  .intro p {
+    font-size: 3.2rem;
+  }
+}
+@media (max-width: 768px) {
+  main .text h6 {
+    font-size: 1.8rem;
+  }
+  .intro p {
+    font-size: 2.6rem;
+  }
+}

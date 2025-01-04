@@ -1,0 +1,54 @@
+@mixin wh {
+	width: 100%;
+	height: 100%;
+}
+@mixin w($width) {
+	max-width: $width;
+	margin: 0 auto;
+	@include wh;
+}
+
+// flex
+$flex: (
+	start: flex-start,
+	end: flex-end,
+	center: center,
+	around: space-around,
+	between: space-between,
+);
+@function get-flex-value($key) {
+	@return map-get($flex, $key);
+}
+@mixin flex($direction: row, $align: start, $justify: start) {
+	display: flex;
+	flex-direction: ($direction);
+	align-items: get-flex-value($align);
+	justify-content: get-flex-value($justify);
+}
+
+// grid
+@mixin gird($num-c: null, $num-r: null) {
+	display: grid;
+	@if $num-c != null {
+		grid-template-columns: repeat($num-c, 1fr);
+	}
+	@if $num-r != null {
+		grid-template-rows: repeat($num-r, 1fr);
+	}
+}
+
+// position
+@mixin position($position, $top: null, $left: null, $right: null, $bottom: null) {
+	position: $position;
+	top: $top;
+	left: $left;
+	right: $right;
+	bottom: $bottom;
+	@if $top == 50% and $left == 50% {
+		transform: translate(-50%, -50%);
+	} @else if $top == 50% {
+		transform: translateY(-50%);
+	} @else if $left == 50% {
+		transform: translateX(-50%);
+	}
+}

@@ -1,0 +1,200 @@
+@import "_mixin";
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fastly.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+	overflow: hidden;
+	* {
+		font-family: 'Lato', 'Pretendard', sans-serif;
+		cursor: none;
+	}
+}
+.cursor {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background: var(--color-white);
+	border-radius: 50%;
+	opacity: 0;
+	pointer-events: none;
+	mix-blend-mode: difference;
+	transition: transform 0.4s ease-in-out;
+}
+main {
+	width: 100%;
+	max-height: 100vh;
+	background: var(--color-black);
+	position: relative;
+	overflow: hidden;
+	overscroll-behavior: none;
+	.container {
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+		perspective: 500px;
+		overscroll-behavior: contain;
+		@include gird($num-c: 5);
+	}
+	.list {
+		height: calc(100vh / 3);
+		overflow: hidden;
+		transform-style: preserve-3d;
+		a {
+			display: block;
+			@include wh;
+			@include flex(row, center, center);
+			@include position(absolute, 50%, 50%);
+		}
+		&:hover {
+			.text-shadow {
+				opacity: 1;
+			}
+		}
+	}
+	.img,
+	.img img {
+		@include position(absolute, 50%, 50%);
+	}
+	.img {
+		@include wh;
+		&::before,
+		&::after {
+			content: '';
+			display: block;
+			z-index: 1;
+			@include wh;
+			@include position(absolute, 50%, 50%);
+		}
+		&::before {
+			background: rgba($color: #000000, $alpha: 0.6);
+		}
+		&::after {
+			background: url('/images/noise.gif') no-repeat center / cover;
+			opacity: 0.1;
+			pointer-events: none;
+		}
+		img {
+			min-width: 100%;
+			min-height: 100%;
+			max-height: 100%;
+		}
+	}
+	.text {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		row-gap: 10px;
+		color: var(--color-white);
+		text-align: center;
+		position: relative;
+		z-index: 2;
+		span {
+			font-size: 1.4rem;
+		}
+		h6 {
+			font-size: 2.4rem;
+			font-weight: 600;
+		}
+	}
+	.text-shadow {
+		white-space: nowrap;
+		position: absolute;
+		z-index: -1;
+		pointer-events: none;
+		mix-blend-mode: difference;
+		opacity: 0;
+		transition: transform 0.6s;
+		h6 {
+			font-size: 6.2rem;
+			opacity: 0.2;
+		}
+	}
+}
+
+.intro {
+	width: 100vw;
+	height: 100vh;
+	background: var(--color-black);
+	z-index: 10;
+	transition: all 0.6s;
+	@include flex(column, center, center);
+	@include position(fixed, 0, 0, 0, 0);
+	p {
+		color: var(--color-white);
+		font-size: 4.0rem;
+		font-weight: 600;
+		text-align: center;
+		line-height: 1.4;
+		position: relative;
+		&::after {
+			content: '';
+			display: block;
+			width: 0;
+			height: 100%;
+			background: var(--color-black);
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: all 0.4s ease-in-out;
+		}
+		&:nth-child(odd) {
+			&::after {
+				left: 0;
+			}
+		}
+		&:nth-child(even) {
+			&::after {
+				right: 0;
+			}
+		}
+		&.off {
+			&::after {
+				width: 100%;
+			}
+		}
+	}
+	&.off {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+@media (max-width: 1400px) {
+	main {
+		.text {
+			h6 {
+				font-size: 2.0rem;
+			}
+		}
+	}
+}
+
+@media (max-width: 1200px) {
+	main .container {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+@media (max-width: 1024px) {
+	main {
+		.container {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.list {
+			height: calc(100vh / 4);
+		}
+	}
+	.intro p {
+		font-size: 3.2rem;
+	}
+}
+
+@media (max-width: 768px) {
+	main .text h6 {
+		font-size: 1.8rem;
+	}
+	.intro p {
+		font-size: 2.6rem;
+	}
+}
