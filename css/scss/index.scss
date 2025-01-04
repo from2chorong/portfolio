@@ -61,15 +61,16 @@ main {
 		&::after {
 			content: '';
 			display: block;
+			width: calc(100% + 2px);
+			height: calc(100% + 2px);
 			z-index: 1;
-			@include wh;
 			@include position(absolute, 50%, 50%);
 		}
 		&::before {
 			background: rgba($color: #000000, $alpha: 0.6);
 		}
 		&::after {
-			background: url('/images/noise.gif') no-repeat center / cover;
+			background: url('/portfolio/images/noise.gif') no-repeat center / cover;
 			opacity: 0.1;
 			pointer-events: none;
 		}
@@ -196,5 +197,16 @@ main {
 	}
 	.intro p {
 		font-size: 2.6rem;
+	}
+}
+
+@media (max-width: 480px) {
+	main .text {
+		span {
+			font-size: 1.2rem;
+		}
+		h6 {
+			font-size: 1.6rem;
+		}
 	}
 }
