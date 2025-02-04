@@ -1,9 +1,9 @@
 let lists = [
 	{
 		type: '웹사이트',
-		name: '하림지주',
-		image: 'harim',
-		link: 'https://harimholdings.com/kr/'
+		name: 'Buil',
+		image: 'buil',
+		link: 'https://builsf.com/'	
 	},
 	{
 		type: '웹사이트',
@@ -49,9 +49,9 @@ let lists = [
 	},
 	{
 		type: '웹사이트',
-		name: 'Buil',
-		image: 'buil',
-		link: 'https://builsf.com/'	
+		name: '하림지주',
+		image: 'harim',
+		link: 'https://harimholdings.com/kr/'
 	},
 	{
 		type: '웹사이트',
