@@ -90,20 +90,25 @@ function initAnimation() {
 	let ticking = false;
 	const scrollAmount = window.innerHeight / 2;
 
-    Observer.create({
-        preventDefault: true,
+	Observer.create({
+        preventDefault: false,
         target: $container,
         onChange: ({ deltaY, event }) => {
+            if (event.type === 'wheel') {
+                event.preventDefault();
+            }
+
             lastDeltaY = event.type === 'wheel' ? -deltaY : deltaY;
+
             if (!ticking) {
                 ticking = true;
                 requestAnimationFrame(() => {
-					const scrollDistance = Math.sign(lastDeltaY) * scrollAmount;
+                    const scrollDistance = Math.sign(lastDeltaY) * scrollAmount;
                     for (let i = 0; i < $items.length; i++) {
                         gsap.to($items[i], {
                             duration: 1,
                             y: `+=${scrollDistance}`,
-							ease: 'power4.out',
+                            ease: 'power4.out',
                             modifiers: {
                                 y: gsap.utils.unitize(wraps[i]),
                             },
@@ -113,7 +118,8 @@ function initAnimation() {
                 });
             }
         },
-	});
+    });
+
 		
 	window.addEventListener('resize', () => {
 		setupWraps();
@@ -223,8 +229,9 @@ function initAnimation() {
 		$container.addEventListener('mouseleave', leaveHandler);
 
 	}
-	
-	imgMove();
+	if (window.innerWidth > 768) {
+		imgMove();
+	}
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -265,7 +272,7 @@ $texts.forEach($text => {
 });
 
 function toLeft() {
-    var rolling = document.querySelector('.rolling .inner');
+	var rolling = document.querySelector('.rolling .inner');
 	var pElements = rolling.querySelectorAll('p');
     var leftW = pElements[0].offsetWidth || 100;
 

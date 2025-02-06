@@ -204,12 +204,21 @@ main {
 }
 
 @media (max-width: 480px) {
-	.wrapper .text {
-		span {
-			font-size: 1.2rem;
-		}
-		h6 {
-			font-size: 1.6rem;
+	main {
+		padding: 0 20px;
+	}
+	.contact, .rolling {
+		height: 80px;
+	}
+	.wrapper {
+		max-height: calc(100vh - 160px);
+		.text {
+			span {
+				font-size: 1.2rem;
+			}
+			h6 {
+				font-size: 1.6rem;
+			}
 		}
 	}
 }

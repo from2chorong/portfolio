@@ -42,21 +42,24 @@
 			}
 	
 			// view port
-			var windowWidth = window.screen.width
-			setViewPort(windowWidth);
-			function setViewPort(w_width) {
-				if (w_width <= 480) {
-					$('meta[name=viewport]').attr('content', 'width=480, maximum-scale=2.0, user-scalable=yes, target-densitydpi=medium-dpi');
-				} else {
-					$('meta[name=viewport]').attr('content', 'width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes,target-densitydpi=medium-dpi');
-				}
-			}
-	
-			window.addEventListener('resize', function (event) {
-				windowWidth = window.screen.width
+			document.addEventListener('DOMContentLoaded', function() {
+				var windowWidth = window.screen.width;
 				setViewPort(windowWidth);
-			}, true);
-	
+
+				function setViewPort(w_width) {
+					if (w_width <= 480) {
+						$('meta[name=viewport]').attr('content', 'width=480, maximum-scale=2.0, user-scalable=yes, target-densitydpi=medium-dpi');
+					} else {
+						$('meta[name=viewport]').attr('content', 'width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes,target-densitydpi=medium-dpi');
+					}
+				}
+
+				window.addEventListener('resize', function() {
+					windowWidth = window.screen.width;
+					setViewPort(windowWidth);
+				}, true);
+			});
+
 			// vh
 			function setScreenSize() {
 				let vh = window.innerHeight * 0.01;
