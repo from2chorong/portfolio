@@ -43,15 +43,15 @@ let lists = [
 	},
 	{
 		type: '웹사이트',
-		name: 'LOGOS',
-		image: 'logos',
-		link: 'https://www.lawlogos.com/'	
-	},
-	{
-		type: '웹사이트',
 		name: '하림지주',
 		image: 'harim',
 		link: 'https://harimholdings.com/kr/'
+	},
+	{
+		type: '웹사이트',
+		name: 'LOGOS',
+		image: 'logos',
+		link: 'https://www.lawlogos.com/'	
 	},
 	{
 		type: '웹사이트',

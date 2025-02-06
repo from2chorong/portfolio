@@ -5,7 +5,6 @@ body {
 }
 body * {
   font-family: "Lato", "Pretendard", sans-serif;
-  cursor: none;
 }
 
 .cursor {
@@ -21,14 +20,74 @@ body * {
 }
 
 main {
-  width: 100%;
-  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  row-gap: 20px;
   background: var(--color-black);
+  padding: 0 40px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+main::after {
+  content: "";
+  display: block;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  background: url("/images/noise.gif") repeat center/400px;
+  opacity: 0.1;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contact,
+.rolling {
+  width: 100%;
+  height: 100px;
+}
+.contact *,
+.rolling * {
+  color: var(--color-white);
+}
+
+.contact {
+  row-gap: 5px;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.rolling {
+  width: 100%;
+  overflow: hidden;
+}
+.rolling .inner {
+  display: flex;
   position: relative;
+}
+.rolling p {
+  font-size: 2.975vw;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0.2;
+}
+
+.wrapper {
+  width: 100%;
+  max-height: calc(100vh - 200px);
+  position: relative;
+  z-index: 1;
   overflow: hidden;
   overscroll-behavior: none;
 }
-main .container {
+.wrapper .container {
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -37,12 +96,15 @@ main .container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
-main .list {
-  height: 33.3333333333vh;
+.wrapper .container * {
+  cursor: none;
+}
+.wrapper .list {
+  height: calc((100vh - 200px) / 3);
   overflow: hidden;
   transform-style: preserve-3d;
 }
-main .list a {
+.wrapper .list a {
   display: block;
   width: 100%;
   height: 100%;
@@ -55,21 +117,21 @@ main .list a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-main .list:hover .text-shadow {
+.wrapper .list:hover .text-shadow {
   opacity: 1;
 }
-main .img,
-main .img img {
+.wrapper .img,
+.wrapper .img img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-main .img {
+.wrapper .img {
   width: 100%;
   height: 100%;
 }
-main .img::before, main .img::after {
+.wrapper .img::before, .wrapper .img::after {
   content: "";
   display: block;
   width: calc(100% + 2px);
@@ -80,20 +142,20 @@ main .img::before, main .img::after {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-main .img::before {
+.wrapper .img::before {
   background: rgba(0, 0, 0, 0.6);
 }
-main .img::after {
+.wrapper .img::after {
   background: url("/portfolio/images/noise.gif") no-repeat center/cover;
   opacity: 0.1;
   pointer-events: none;
 }
-main .img img {
+.wrapper .img img {
   min-width: 100%;
   min-height: 100%;
   max-height: 100%;
 }
-main .text {
+.wrapper .text {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -104,14 +166,14 @@ main .text {
   position: relative;
   z-index: 2;
 }
-main .text span {
+.wrapper .text span {
   font-size: 1.4rem;
 }
-main .text h6 {
+.wrapper .text h6 {
   font-size: 2.4rem;
   font-weight: 600;
 }
-main .text-shadow {
+.wrapper .text-shadow {
   white-space: nowrap;
   position: absolute;
   z-index: -1;
@@ -120,94 +182,48 @@ main .text-shadow {
   opacity: 0;
   transition: transform 0.6s;
 }
-main .text-shadow h6 {
+.wrapper .text-shadow h6 {
   font-size: 6.2rem;
   opacity: 0.2;
 }
 
-.intro {
-  width: 100vw;
-  height: 100vh;
-  background: var(--color-black);
-  z-index: 10;
-  transition: all 0.6s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.intro p {
-  color: var(--color-white);
-  font-size: 4rem;
-  font-weight: 600;
-  text-align: center;
-  line-height: 1.4;
-  position: relative;
-}
-.intro p::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 100%;
-  background: var(--color-black);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: all 0.4s ease-in-out;
-}
-.intro p:nth-child(odd)::after {
-  left: 0;
-}
-.intro p:nth-child(even)::after {
-  right: 0;
-}
-.intro p.off::after {
-  width: 100%;
-}
-.intro.off {
-  opacity: 0;
-  pointer-events: none;
-}
-
 @media (max-width: 1400px) {
-  main .text h6 {
+  .wrapper .text h6 {
     font-size: 2rem;
   }
 }
 @media (max-width: 1200px) {
-  main .container {
+  .wrapper .container {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 @media (max-width: 1024px) {
-  main .container {
+  .contact {
+    font-size: 1.8rem;
+  }
+  .wrapper .container {
     grid-template-columns: repeat(2, 1fr);
   }
-  main .list {
-    height: 25vh;
-  }
-  .intro p {
-    font-size: 3.2rem;
+  .wrapper .list {
+    height: calc((100vh - 200px) / 4);
   }
 }
 @media (max-width: 768px) {
-  main .text h6 {
-    font-size: 1.8rem;
+  .contact {
+    font-size: 1.6rem;
   }
-  .intro p {
-    font-size: 2.6rem;
+  .rolling p {
+    font-size: 2rem;
+  }
+  .wrapper .text h6 {
+    font-size: 1.8rem;
   }
 }
 @media (max-width: 480px) {
-  main .text span {
+  .wrapper .text span {
     font-size: 1.2rem;
   }
-  main .text h6 {
+  .wrapper .text h6 {
     font-size: 1.6rem;
   }
 }

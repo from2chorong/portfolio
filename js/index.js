@@ -264,22 +264,21 @@ $texts.forEach($text => {
     });
 });
 
-// intro
-document.addEventListener('DOMContentLoaded', function() {
-	setTimeout(() => {
-        const $intro = document.querySelector('.intro');
-        const pElements = $intro.querySelectorAll('p');
-        
-        pElements.forEach((p, index) => {
-			setTimeout(() => {
-				p.classList.add('off');
-				
-				if (index === pElements.length - 1) {
-					setTimeout(() => {
-						$intro.classList.add('off');
-					}, 600);
-				}
-			}, index * 200);
+function toLeft() {
+	var rolling = $('.rolling .inner'),
+		leftW = $('.rolling .inner p').outerWidth() * 1;
+	
+	setInterval(function(){
+		rolling.animate({
+			left: -leftW }, {
+			duration: 20000,
+			easing: 'linear',
+			step: function () {},
+			complete: function () {
+				rolling.css({ left: 0 })
+				$(this).find('p').first().appendTo(rolling);
+			}
 		});
-    }, 3000); 
-});
+	}, 10)
+}
+toLeft();
