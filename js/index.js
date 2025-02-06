@@ -265,8 +265,8 @@ $texts.forEach($text => {
 });
 
 function toLeft() {
-	var rolling = $('.rolling .inner'),
-		leftW = $('.rolling .inner p').outerWidth() * 1;
+	var rolling = $('.rolling .inner');
+	var leftW = $('.rolling .inner p').outerWidth() * 1;
 	
 	setInterval(function(){
 		rolling.animate({
