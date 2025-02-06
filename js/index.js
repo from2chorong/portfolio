@@ -1,5 +1,4 @@
 const $container = document.querySelector('.container');
-const $cursor = document.querySelector('.cursor');
 let wraps = [];
 
 function renderList() {
@@ -17,7 +16,7 @@ function renderList() {
         figure.classList.add('img');
 
         const img = document.createElement('img');
-        img.src = `/portfolio/images/projects/${list.image}.jpg`;
+        img.src = `/images/projects/${list.image}.jpg`;
         img.alt = list.img;
         img.loading = 'lazy';
 
@@ -86,38 +85,28 @@ function initAnimation() {
 
     setupWraps();
 
-    let lastDeltaY = 0;
-	let ticking = false;
-	const scrollAmount = window.innerHeight / 2;
-
 	Observer.create({
         preventDefault: false,
-        target: $container,
-        onChange: ({ deltaY, event }) => {
-            if (event.type === 'wheel') {
-                event.preventDefault();
-            }
+		target: $container,
+		onChange: ({ deltaY, isDragging, event }) => {
+			if (event.type === 'wheel') {
+				event.preventDefault();
+			}
 
-            lastDeltaY = event.type === 'wheel' ? -deltaY : deltaY;
+			const d = event.type === 'wheel' ? -deltaY : deltaY;
+			const y = isDragging ? d * 5 : d * 10;
 
-            if (!ticking) {
-                ticking = true;
-                requestAnimationFrame(() => {
-                    const scrollDistance = Math.sign(lastDeltaY) * scrollAmount;
-                    for (let i = 0; i < $items.length; i++) {
-                        gsap.to($items[i], {
-                            duration: 1,
-                            y: `+=${scrollDistance}`,
-                            ease: 'power4.out',
-                            modifiers: {
-                                y: gsap.utils.unitize(wraps[i]),
-                            },
-                        });
-                    }
-                    ticking = false;
-                });
-            }
-        },
+			for (let i = 0; i < $items.length; i++) {
+				gsap.to($items[i], {
+					duration: 1,
+					ease: 'power4.out',
+					y: `+=${y}`,
+					modifiers: {
+						y: gsap.utils.unitize(wraps[i]),
+					},
+				});
+			}
+		},
     });
 
 		
@@ -165,16 +154,16 @@ function initAnimation() {
 				const $h6 = $text.querySelector('h6');
 				if (!$h6) return;
 
-				let $shadow = $text.querySelector('.text-shadow');
+				let $shadow = $text.querySelector('.shadow');
 				if (!$shadow) {
 					$shadow = document.createElement('div');
-					$shadow.classList.add('text-shadow');
+					$shadow.classList.add('shadow');
 					const $h6Clone = $h6.cloneNode(true);
 					$shadow.appendChild($h6Clone);
 					$text.appendChild($shadow);
 				}
 
-				$shadow.style.left = `${-dxFromCenter - $shadow.offsetWidth / 2}px`;
+				$shadow.style.left = `${-dxFromCenter}px`;
 				$shadow.style.top = `${-dyFromCenter}px`;
 
 				gsap.to($item, {
@@ -238,22 +227,14 @@ window.addEventListener('DOMContentLoaded', () => {
     onRenderListComplete();
 });
 
-document.addEventListener('mousemove', function(e) {
-	const x = e.pageX - 10;
-	const y = e.pageY - 10;
-	$cursor.style.left = x + 'px';
-	$cursor.style.top = y + 'px';
-});
-
-function handleCursorStyle(opacity, transformScale) {
-    $cursor.style.opacity = opacity;
-    $cursor.style.transform = `scale(${transformScale})`;
-}
-
-function handleTextShadow($text, transformScale) {
-    const $shadow = $text.querySelector('.text-shadow');
+function handleShadow($text, action) {
+    const $shadow = $text.querySelector('.shadow');
     if ($shadow) {
-        $shadow.style.transform = `scale(${transformScale})`;
+        if (action === 'add') {
+            $shadow.classList.add('circle');
+        } else if (action === 'remove') {
+            $shadow.classList.remove('circle');
+        }
     }
 }
 
@@ -261,13 +242,11 @@ const $texts = document.querySelectorAll('.text');
 
 $texts.forEach($text => {
     $text.addEventListener('mouseover', function () {
-        handleCursorStyle(1, 5);
-        handleTextShadow($text, 0);
+		handleShadow($text, 'add');
     });
 
     $text.addEventListener('mouseleave', function() {
-        handleCursorStyle(0, 0);
-        handleTextShadow($text, 1);
+		handleShadow($text, 'remove');
     });
 });
 

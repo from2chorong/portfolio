@@ -7,21 +7,10 @@ body * {
   font-family: "Lato", "Pretendard", sans-serif;
 }
 
-.cursor {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: var(--color-white);
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: difference;
-  transition: transform 0.4s ease-in-out;
-}
-
 main {
   width: 100vw;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   row-gap: 20px;
   background: var(--color-black);
   padding: 0 40px;
@@ -96,9 +85,6 @@ main::after {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
-.wrapper .container * {
-  cursor: none;
-}
 .wrapper .list {
   height: calc((100vh - 200px) / 3);
   overflow: hidden;
@@ -117,7 +103,7 @@ main::after {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.wrapper .list:hover .text-shadow {
+.wrapper .list:hover .shadow {
   opacity: 1;
 }
 .wrapper .img,
@@ -146,7 +132,7 @@ main::after {
   background: rgba(0, 0, 0, 0.6);
 }
 .wrapper .img::after {
-  background: url("/portfolio/images/noise.gif") no-repeat center/cover;
+  background: url("/images/noise.gif") no-repeat center/cover;
   opacity: 0.1;
   pointer-events: none;
 }
@@ -163,6 +149,7 @@ main::after {
   row-gap: 10px;
   color: var(--color-white);
   text-align: center;
+  padding: 20px 40px;
   position: relative;
   z-index: 2;
 }
@@ -170,25 +157,38 @@ main::after {
   font-size: 1.4rem;
 }
 .wrapper .text h6 {
-  font-size: 2.4rem;
   font-weight: 600;
 }
-.wrapper .text-shadow {
+.wrapper .text > h6 {
+  font-size: 2.4rem;
+}
+.wrapper .shadow {
   white-space: nowrap;
   position: absolute;
-  z-index: -1;
   pointer-events: none;
   mix-blend-mode: difference;
-  opacity: 0;
+  opacity: 1;
   transition: transform 0.6s;
+  transform-origin: center;
 }
-.wrapper .text-shadow h6 {
+.wrapper .shadow h6 {
   font-size: 6.2rem;
   opacity: 0.2;
 }
+.wrapper .shadow.circle {
+  width: 20px;
+  height: 20px;
+  background: var(--color-white);
+  border-radius: 50%;
+  transform: scale(5);
+  transform-origin: left;
+}
+.wrapper .shadow.circle h6 {
+  display: none;
+}
 
 @media (max-width: 1400px) {
-  .wrapper .text h6 {
+  .wrapper .text > h6 {
     font-size: 2rem;
   }
 }
@@ -215,7 +215,10 @@ main::after {
   .rolling p {
     font-size: 2rem;
   }
-  .wrapper .text h6 {
+  .wrapper .text {
+    padding: 0;
+  }
+  .wrapper .text > h6 {
     font-size: 1.8rem;
   }
 }
@@ -229,10 +232,13 @@ main::after {
   .wrapper {
     max-height: calc(100vh - 160px);
   }
+  .wrapper .list {
+    height: calc((100vh - 160px) / 4);
+  }
   .wrapper .text span {
     font-size: 1.2rem;
   }
-  .wrapper .text h6 {
-    font-size: 1.6rem;
+  .wrapper .text > h6 {
+    font-size: 1.4rem;
   }
 }
