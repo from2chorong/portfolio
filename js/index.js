@@ -265,20 +265,23 @@ $texts.forEach($text => {
 });
 
 function toLeft() {
-	var rolling = $('.rolling .inner');
-	var leftW = $('.rolling .inner p').outerWidth() * 1;
-	
-	setInterval(function(){
-		rolling.animate({
-			left: -leftW }, {
-			duration: 20000,
-			easing: 'linear',
-			step: function () {},
-			complete: function () {
-				rolling.css({ left: 0 })
-				$(this).find('p').first().appendTo(rolling);
-			}
-		});
-	}, 10)
+    var rolling = document.querySelector('.rolling .inner');
+	var pElements = rolling.querySelectorAll('p');
+    var leftW = pElements[0].offsetWidth || 100;
+
+    setInterval(function () {
+        rolling.style.transition = 'transform 20s linear';
+        rolling.style.transform = `translateX(-${leftW}px)`;
+
+        setTimeout(function () {
+            rolling.style.transition = 'none';
+            rolling.style.transform = 'translateX(0)';
+            rolling.appendChild(pElements[0]);
+            pElements = rolling.querySelectorAll('p');
+        }, 20000);
+    }, 10);
 }
-toLeft();
+
+document.addEventListener('DOMContentLoaded', function () {
+    toLeft();
+});
