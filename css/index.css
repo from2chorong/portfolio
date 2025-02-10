@@ -25,7 +25,7 @@ main::after {
   display: block;
   width: calc(100% + 2px);
   height: calc(100% + 2px);
-  background: url("/images/noise.gif") repeat center/400px;
+  background: url("/portfolio/images/noise.gif") repeat center/400px;
   opacity: 0.1;
   pointer-events: none;
   position: absolute;
@@ -132,7 +132,7 @@ main::after {
   background: rgba(0, 0, 0, 0.6);
 }
 .wrapper .img::after {
-  background: url("/images/noise.gif") no-repeat center/cover;
+  background: url("/portfolio/images/noise.gif") no-repeat center/cover;
   opacity: 0.1;
   pointer-events: none;
 }
