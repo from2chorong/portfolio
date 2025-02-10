@@ -149,7 +149,7 @@ main::after {
   row-gap: 10px;
   color: var(--color-white);
   text-align: center;
-  padding: 20px 40px;
+  padding: 20px 0;
   position: relative;
   z-index: 2;
 }
