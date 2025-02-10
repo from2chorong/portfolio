@@ -22,7 +22,7 @@ main {
 		display: block;
 		width: calc(100% + 2px);
 		height: calc(100% + 2px);
-		background: url('/images/noise.gif') repeat center / 400px;
+		background: url('/portfolio/images/noise.gif') repeat center / 400px;
 		opacity: 0.1;
 		pointer-events: none;
 		@include position(absolute, 50%, 50%);
@@ -108,7 +108,7 @@ main {
 			background: rgba($color: #000000, $alpha: 0.6);
 		}
 		&::after {
-			background: url('/images/noise.gif') no-repeat center / cover;
+			background: url('/portfolio/images/noise.gif') no-repeat center / cover;
 			opacity: 0.1;
 			pointer-events: none;
 		}
