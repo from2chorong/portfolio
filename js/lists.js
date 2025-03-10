@@ -325,18 +325,18 @@ let lists = [
 	},
 	{
 		type: '제안시안',
-		name: '동아ST',
-		image: 'dongast',
-		link: 'http://sian.webmoa21.co.kr/dongast/a/index.html',
+		name: '동아쏘시오홀딩스',
+		image: 'dongasocio',
+		link: 'http://sian.webmoa21.co.kr/donga/b/index.html',
 		keywords: [
 			'proposal', 'gsap'
 		]
 	},
 	{
 		type: '제안시안',
-		name: '동아쏘시오홀딩스',
-		image: 'dongasocio',
-		link: 'http://sian.webmoa21.co.kr/donga/b/index.html',
+		name: '동아ST',
+		image: 'dongast',
+		link: 'http://sian.webmoa21.co.kr/dongast/a/index.html',
 		keywords: [
 			'proposal', 'gsap'
 		]
