@@ -27,7 +27,7 @@ $flex: (
 }
 
 // grid
-@mixin gird($num-c: null, $num-r: null) {
+@mixin grid($num-c: null, $num-r: null) {
 	display: grid;
 	@if $num-c != null {
 		grid-template-columns: repeat($num-c, 1fr);
