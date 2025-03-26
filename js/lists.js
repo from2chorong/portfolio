@@ -102,7 +102,7 @@ let lists = [
 		type: '웹사이트',
 		name: 'Buil',
 		image: 'buil',
-		link: 'https://builsf.com/',
+		link: 'http://builsf.com/',
 		keywords: [
 			'website', 'gdweb', 'gsap'
 		]
