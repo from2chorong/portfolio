@@ -75,7 +75,7 @@ let lists = [
 		type: '웹사이트',
 		name: 'Sugentech',
 		image: 'sugentech',
-		link: 'http://sugentech-n.webmoa21.co.kr/kr/',
+		link: 'https://sugentech.com/kr/',
 		keywords: [
 			'website', 'gsap'
 		]
